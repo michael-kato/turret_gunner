@@ -27,7 +27,7 @@ public class TurretController : MonoBehaviour
 
     private void RotateCamera()
     {
-        
+        var trans = cameraTransform.localRotation;
         
         // Get keyboard input for WASD
         float rotateX = Input.GetAxis("Horizontal"); // A/D or Left/Right rotation (Y-axis)
@@ -47,6 +47,8 @@ public class TurretController : MonoBehaviour
 
     private void RotateTurret()
     {
+        var trans = turretBase.localRotation;
+        
         // Get mouse input
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
