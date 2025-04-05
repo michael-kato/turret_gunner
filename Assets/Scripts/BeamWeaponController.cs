@@ -4,10 +4,17 @@ using UnityEngine;
 public class BeamWeapon : MonoBehaviour
 {
     public LineRenderer beamLine; // Attach a LineRenderer for the beam
-    public float beamRange = 50f;
+    public float beamRange = 5000f;
     public LayerMask destructibleLayer;
     public GameObject explosionEffect; // Drag your VFX prefab here in the inspector
 
+    private Transform _beamTransform;
+
+    private void Start()
+    {
+        _beamTransform = beamLine.transform;
+    }
+    
     private void Update()
     {
         // Fire beam when left mouse button is pressed
@@ -28,10 +35,10 @@ public class BeamWeapon : MonoBehaviour
     {
         // Show beam line
         beamLine.enabled = true;
-        beamLine.SetPosition(0, transform.position);
+        beamLine.SetPosition(0, _beamTransform.position);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, beamRange, destructibleLayer))
+        if (Physics.Raycast(_beamTransform.position, _beamTransform.forward, out hit, beamRange, destructibleLayer))
         {
             beamLine.SetPosition(1, hit.point);
             
@@ -40,7 +47,6 @@ public class BeamWeapon : MonoBehaviour
             {
                 Instantiate(explosionEffect, hit.point, Quaternion.identity);
             }
-
             
             // Destroy the hit building
             if (hit.collider.CompareTag("Destructible"))
@@ -50,7 +56,7 @@ public class BeamWeapon : MonoBehaviour
         }
         else
         {
-            beamLine.SetPosition(1, transform.position + transform.forward * beamRange);
+            beamLine.SetPosition(1, _beamTransform.position + _beamTransform.forward * beamRange);
         }
     }
 }
