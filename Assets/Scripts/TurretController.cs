@@ -9,6 +9,10 @@ public class TurretController : MonoBehaviour
     public float mouseSensitivity = 3f; // Sensitivity for mouse-controlled turret rotation
     public float maxTurretRotationSpeed = 30f; // Maximum turret rotation speed (degrees per second)
     public float turretClamp = 45f; // Clamping range for turret rotation (degrees)
+    private float _turretXMin;
+    private float _turretXMax;
+    private float _turretYMin;
+    private float _turretYMax;
     public float cameraClamp = 15f; // Clamping range for camera X and Y rotation (degrees)
     
     private Transform _parent;
@@ -16,8 +20,13 @@ public class TurretController : MonoBehaviour
     void Start()
     {
         _parent = transform.parent;
-    }
 
+        var rot = transform.localRotation.eulerAngles;
+        _turretXMin = rot.x - turretClamp / 2;
+        _turretXMax = rot.x + turretClamp;
+        _turretYMin = rot.y - turretClamp;
+        _turretYMax = rot.y + turretClamp;
+    }
     
     void Update()
     {
@@ -69,8 +78,8 @@ public class TurretController : MonoBehaviour
         turretXRotation -= mouseY;
 
         // Clamp the turret's X and Y rotation to ±turretClamp
-        //turretXRotation = Mathf.Clamp(turretXRotation, -turretClamp, turretClamp);
-        //turretYRotation = Mathf.Clamp(turretYRotation, -turretClamp, turretClamp);
+        turretXRotation = Mathf.Clamp(turretXRotation, _turretXMin, _turretXMax);
+        turretYRotation = Mathf.Clamp(turretYRotation, _turretYMin, _turretYMax);
 
         // Apply the clamped rotation to the turret
         transform.localRotation = Quaternion.Euler(turretXRotation, turretYRotation, rots.z);

@@ -10,11 +10,13 @@ public class BeamWeapon :  MonoBehaviour
     public AudioManager audioManager;
 
     private Transform _beamTransform;
+    private Quaternion _zUp;
 
     private void Start()
     {
         _beamTransform = beamLine.transform;
         audioManager = new AudioManager();
+        _zUp = Quaternion.LookRotation(Vector3.up, Vector3.forward);
     }
     
     private void Update()
@@ -35,7 +37,6 @@ public class BeamWeapon :  MonoBehaviour
 
     void FireBeam()
     {
-
         // Show beam line
         beamLine.enabled = true;
         beamLine.SetPosition(0, _beamTransform.position);
@@ -48,14 +49,16 @@ public class BeamWeapon :  MonoBehaviour
             // Spawn explosion effect at the hit point
             if (explosionEffect != null)
             {
-                Instantiate(explosionEffect, hit.point, Quaternion.identity);
+                Instantiate(explosionEffect, hit.point, _zUp);
                 //audioManager.PlayExplosionSound();
             }
             
             // Destroy the hit building
             if (hit.collider.CompareTag("Destructible"))
             {
-                Destroy(hit.collider.gameObject);
+                var go = hit.collider.gameObject;
+                var destruct = go.GetComponent<DestructibleBuilding>();
+                destruct.DestroyBuilding();
             }
         }
         else

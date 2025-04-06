@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2927743077468690202}
   m_Layer: 0
   m_Name: House
-  m_TagString: Untagged
+  m_TagString: Destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d2d17868833da4691d7b639dade7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructionEffect: {fileID: 4361724275723424294, guid: a89331caec02bdc46a38fb9e3e1bb5d7, type: 3}
+  destructionEffect: {fileID: 2267769761547892739, guid: 31ab31129f1c53b4a86b31b3fc1a2f54, type: 3}
