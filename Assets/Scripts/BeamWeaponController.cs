@@ -1,18 +1,20 @@
 ﻿// BeamWeapon.cs
 using UnityEngine;
 
-public class BeamWeapon : MonoBehaviour
+public class BeamWeapon :  MonoBehaviour 
 {
     public LineRenderer beamLine; // Attach a LineRenderer for the beam
     public float beamRange = 5000f;
     public LayerMask destructibleLayer;
     public GameObject explosionEffect; // Drag your VFX prefab here in the inspector
+    public AudioManager audioManager;
 
     private Transform _beamTransform;
 
     private void Start()
     {
         _beamTransform = beamLine.transform;
+        audioManager = new AudioManager();
     }
     
     private void Update()
@@ -33,6 +35,7 @@ public class BeamWeapon : MonoBehaviour
 
     void FireBeam()
     {
+
         // Show beam line
         beamLine.enabled = true;
         beamLine.SetPosition(0, _beamTransform.position);
@@ -46,6 +49,7 @@ public class BeamWeapon : MonoBehaviour
             if (explosionEffect != null)
             {
                 Instantiate(explosionEffect, hit.point, Quaternion.identity);
+                //audioManager.PlayExplosionSound();
             }
             
             // Destroy the hit building

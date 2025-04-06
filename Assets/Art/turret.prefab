@@ -56,7 +56,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b45f271238f494c449d052dfa6c838f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -261,6 +261,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   explosionEffect: {fileID: 2267769761547892739, guid: 31ab31129f1c53b4a86b31b3fc1a2f54, type: 3}
+  audioManager: {fileID: 0}
 --- !u!4 &2159328020209148775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1772a2549a3ae8542b50492c82cbed5d, type: 3}
