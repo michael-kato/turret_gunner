@@ -19,7 +19,7 @@ public class BeamWeapon :  MonoBehaviour
         _zUp = Quaternion.LookRotation(Vector3.up, Vector3.forward);
     }
     
-    private void Update()
+    private void LateUpdate()
     {
         // Fire beam when left mouse button is pressed
         if (Input.GetMouseButton(0))
