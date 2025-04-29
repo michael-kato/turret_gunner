@@ -1517,12 +1517,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1328229e1cbc45942ab5ed627f8f36b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSize: {x: 8, y: 6, z: 8}
-  seed: 20
-  useRandomSeed: 1
-  buildGrid: 0
-  buildingSpacing: 40
-  gridSize: 3
+  bottomCornerPrefab: {fileID: 6205495367595717800, guid: c85e0baa251215748a173d940bccec5f, type: 3}
+  bottomMiddlePrefab: {fileID: 6635475873205309955, guid: c85e0baa251215748a173d940bccec5f, type: 3}
+  middleCornerPrefab: {fileID: 8345414451563340763, guid: c85e0baa251215748a173d940bccec5f, type: 3}
+  middleMiddlePrefab: {fileID: -2331816117444892522, guid: c85e0baa251215748a173d940bccec5f, type: 3}
+  roofMiddlePrefab: {fileID: -7905752164852686831, guid: c85e0baa251215748a173d940bccec5f, type: 3}
+  topCornerPrefab: {fileID: -7497080420584260060, guid: c85e0baa251215748a173d940bccec5f, type: 3}
+  topMiddlePrefab: {fileID: -3443033635919127786, guid: c85e0baa251215748a173d940bccec5f, type: 3}
+  gridWidth: 2
+  gridHeight: 2
+  gridDepth: 2
+  collapseStepDelay: 0.01
+  possibilityMaterial: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  collapsedMaterial: {fileID: 2100000, guid: 4af6896d8a0edcf4db827d2500de54c7, type: 2}
+  isStepMode: 0
+  currentStep: 0
 --- !u!4 &579672556
 Transform:
   m_ObjectHideFlags: 0
@@ -1546,23 +1555,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579672554}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a035ea62832e74a8f265b54ca14439, type: 3}
+  m_Script: {fileID: 11500000, guid: fc042effa2ea68343a2d34a23882b935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingDimensions: {x: 8, y: 7, z: 8}
-  seed: 9924
-  unitSize: 2
-  windowProbability: 0.4
-  detailProbability: 0.1
-  minFloors: 3
-  maxFloors: 8
-  buildingBaseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  roofColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
-  windowColor: {r: 0.1, g: 0.3, b: 0.6, a: 0.8}
-  roughness: 0.7
-  metallic: 0.1
+  wfc: {fileID: 579672555}
+  stepButton: {fileID: 0}
+  autoButton: {fileID: 0}
+  resetButton: {fileID: 0}
+  visualizeButton: {fileID: 0}
+  statusText: {fileID: 0}
 --- !u!1001 &630564890
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿// BeamWeapon.cs
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BeamWeapon :  MonoBehaviour 
 {
@@ -8,15 +9,18 @@ public class BeamWeapon :  MonoBehaviour
     public LayerMask destructibleLayer;
     public GameObject explosionEffect; // Drag your VFX prefab here in the inspector
     public AudioManager audioManager;
+    
 
     private Transform _beamTransform;
     private Quaternion _zUp;
-
+    private Dictionary<int, DestructibleBuilding> _hits;
+    
     private void Start()
     {
         _beamTransform = beamLine.transform;
         audioManager = new AudioManager();
         _zUp = Quaternion.LookRotation(Vector3.up, Vector3.forward);
+        _hits = new();
     }
     
     private void LateUpdate()
@@ -56,9 +60,14 @@ public class BeamWeapon :  MonoBehaviour
             // Destroy the hit building
             if (hit.collider.CompareTag("Destructible"))
             {
-                var go = hit.collider.gameObject;
-                var destruct = go.GetComponent<DestructibleBuilding>();
-                destruct.DestroyBuilding();
+                GameObject go = hit.collider.gameObject;
+                int goId = go.GetInstanceID();
+                if (!_hits.TryGetValue(goId, out DestructibleBuilding destructible))
+                {
+                    destructible = go.GetComponent<DestructibleBuilding>();
+                    _hits[goId] = destructible;
+                }
+                destructible.ApplyDamage();
             }
         }
         else
